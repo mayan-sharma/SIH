@@ -1,75 +1,52 @@
 import 'package:flutter/material.dart';
+import 'home.dart';
+import 'report.dart';
+import 'profile.dart';
 
-void main() => runApp(NavBar());
+final Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 
-class NavBar extends StatelessWidget {
-  @override
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  int currentIndex = 0;
+  final List<Widget> children = [
+    Home(),
+    Report(),
+    Profile(),
+  ];
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "NOICE NOICE",
       home: Scaffold(
+        body: children[currentIndex],
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.black38,
-          iconSize: 27.5,
-          currentIndex: 1,
-          selectedItemColor: Colors.black,
+          iconSize: 20,
+          onTap: onTapped,
+          currentIndex: currentIndex,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.camera),
-              title: Text("Upload"),
-            ),
+                icon: Icon(Icons.home), title: Text('Home')),
             BottomNavigationBarItem(
-              icon: Icon(Icons.bookmark_border),
-              title: Text("Track"),
-            ),
+                icon: Icon(Icons.add_circle_outline), title: Text('Report')),
             BottomNavigationBarItem(
-              icon: Icon(Icons.description),
-              title: Text("Something"),
-            ),
+                icon: Icon(Icons.portrait), title: Text('Profile')),
           ],
         ),
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
-}
 
-class TrackRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Center(child: Text('TRACK')),
-      ),
-    );
+  void onTapped(int index) {
+    setState(() {
+      currentIndex = index;
+    });
   }
 }
-
-// class FirstRoute extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Heading',
-//       home: Scaffold(
-//         appBar: AppBar(
-//           title: Center(
-//             child: Text("Futali"),
-//           ),
-//         ),
-//         body: ,
-//       ),
-//     );
-//   }
-// }
-
-// class SecondRoute extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Hello',
-//       home: Scaffold(
-//         appBar: AppBar(title: Center(child: Text("Second Page"))),
-//         body: Text("Hello"),
-//       ),
-//     );
-//   }
-// }
