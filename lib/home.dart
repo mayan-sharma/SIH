@@ -8,6 +8,10 @@ class Home extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.white,
           titleSpacing: 0,
+          flexibleSpace: Image(
+            image: AssetImage('images/1.jpg'),
+            fit: BoxFit.cover,
+          ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(30),
