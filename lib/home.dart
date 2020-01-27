@@ -9,7 +9,7 @@ class Home extends StatelessWidget {
           backgroundColor: Colors.white,
           titleSpacing: 0,
           flexibleSpace: Image(
-            image: AssetImage('images/1.jpg'),
+            image: AssetImage('assets/images/AppBar_Background.png'),
             fit: BoxFit.cover,
           ),
           shape: RoundedRectangleBorder(
@@ -19,7 +19,7 @@ class Home extends StatelessWidget {
           ),
           bottom: PreferredSize(
               child: Align(
-                alignment: Alignment.center,
+                alignment: Alignment(-0.85, 1),
                 child: Text(
                   "Ankur d;Cruz",
                   style: TextStyle(
@@ -31,21 +31,21 @@ class Home extends StatelessWidget {
               preferredSize: Size.fromHeight(50)),
         ),
         body: Column(
-          children: <Widget>[Cards(), Carousel()],
+          children: <Widget>[PotholesReported(), Carousel()],
         ),
       ),
     );
   }
 }
 
-class Cards extends StatelessWidget {
+class PotholesReported extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
         margin: EdgeInsets.only(top: 10),
         child: Card(
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(30))),
+                borderRadius: BorderRadius.all(Radius.circular(20))),
             child: Row(children: <Widget>[
               Padding(
                 padding: EdgeInsets.all(20),
