@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'home.dart';
 import 'report.dart';
 import 'profile.dart';
@@ -28,16 +29,39 @@ class MyAppState extends State<MyApp> {
       home: Scaffold(
         body: children[currentIndex],
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.black,
           iconSize: 20,
           onTap: onTapped,
           currentIndex: currentIndex,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.home), title: Text('Home')),
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  'Home',
+                  style: TextStyle(color: Colors.white),
+                )),
             BottomNavigationBarItem(
-                icon: Icon(Icons.add_circle_outline), title: Text('Report')),
+                icon: Icon(
+                  Icons.add_circle_outline,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  'Report',
+                  style: TextStyle(color: Colors.white),
+                )),
             BottomNavigationBarItem(
-                icon: Icon(Icons.portrait), title: Text('Profile')),
+              icon: Icon(
+                Icons.portrait,
+                color: Colors.white,
+              ),
+              title: Text(
+                'Profile',
+                style: TextStyle(color: Colors.white),
+              ),
+            )
           ],
         ),
       ),
