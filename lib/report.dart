@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:geolocator/geolocator.dart';
 
 class Report extends StatefulWidget {
   @override
@@ -9,17 +10,34 @@ class Report extends StatefulWidget {
 }
 
 class _ReportState extends State<Report> {
-  File _image;
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
 
-  Future getImage(bool isCamera) async {
+  File _image;
+  Position _currentPosition;
+  String _currentAddress; // Naman knows
+
+  Future getImageAndLocation() async {
     File image;
-    if (isCamera) {
-      image = await ImagePicker.pickImage(source: ImageSource.camera);
-    } else {
-      image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    }
+    Position position;
+
+    image = await ImagePicker.pickImage(source: ImageSource.camera);
+    position = await geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best);
+
     setState(() {
       _image = image;
+      _currentPosition = position;
+    });
+    getAddressFromLatLng();
+  }
+
+  Future getAddressFromLatLng() async {
+    List<Placemark> p = await geolocator.placemarkFromCoordinates(
+        _currentPosition.latitude, _currentPosition.longitude);
+    Placemark place = p[0];
+    setState(() {
+      _currentAddress =
+          "${place.locality}, ${place.postalCode}, ${place.country}";
     });
   }
 
@@ -33,25 +51,9 @@ class _ReportState extends State<Report> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               IconButton(
-                icon: Icon(
-                  Icons.insert_drive_file,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  getImage(false);
-                },
-              ),
-              Text(
-                'Upload from Gallery',
-                style: TextStyle(color: Colors.white),
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              IconButton(
                 icon: Icon(Icons.camera_alt, color: Colors.white),
                 onPressed: () {
-                  getImage(true);
+                  getImageAndLocation();
                 },
               ),
               Text(
@@ -65,6 +67,11 @@ class _ReportState extends State<Report> {
                       height: 300.0,
                       width: 300.0,
                     ),
+              _currentPosition == null
+                  ? Container()
+                  : Text(
+                      "LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}"),
+              _currentAddress == null ? Container() : Text(_currentAddress),
             ],
           ),
         ),
