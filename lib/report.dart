@@ -16,16 +16,20 @@ class _ReportState extends State<Report> {
   Position _currentPosition;
   String _currentAddress; // Naman knows
 
-  Future getImageAndLocation() async {
+  Future getImage() async {
     File image;
-    Position position;
-
     image = await ImagePicker.pickImage(source: ImageSource.camera);
-    position = await geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.best);
-
     setState(() {
       _image = image;
+    });
+    getLocation();
+  }
+
+  Future getLocation() async {
+    Position position;
+    position = await geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best);
+    setState(() {
       _currentPosition = position;
     });
     getAddressFromLatLng();
@@ -52,9 +56,7 @@ class _ReportState extends State<Report> {
             children: <Widget>[
               IconButton(
                 icon: Icon(Icons.camera_alt, color: Colors.white),
-                onPressed: () {
-                  getImageAndLocation();
-                },
+                onPressed: getImage,
               ),
               Text(
                 'Click a picture',
