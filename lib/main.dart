@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
 
 import 'home.dart';
 import 'report.dart';
 import 'profile.dart';
 
-final Color darkBlue = Color.fromARGB(255, 18, 32, 47);
+CameraDescription camera;
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final cameras = await availableCameras();
+  camera = cameras.first;
+
   runApp(MyApp());
 }
 
@@ -20,7 +25,7 @@ class MyAppState extends State<MyApp> {
   int currentIndex = 0;
   final List<Widget> children = [
     Home(),
-    Report(),
+    Report(camera: camera),
     Profile(),
   ];
 
