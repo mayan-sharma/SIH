@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 import 'report.dart';
 import 'profile.dart';
-import 'models/killmepls.dart';
 
 final Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 

@@ -37,7 +37,7 @@ class _ReportState extends State<Report> {
     setState(() {
       _image = image;
     });
-    getLocation();
+    await getLocation();
   }
 
   Future getLocation() async {
@@ -47,7 +47,7 @@ class _ReportState extends State<Report> {
     setState(() {
       _currentPosition = position;
     });
-    getAddressFromLatLng();
+    await getAddressFromLatLng();
   }
 
   Future getAddressFromLatLng() async {
