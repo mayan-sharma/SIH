@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
 
+import 'models/killmepls.dart';
+
 class Report extends StatefulWidget {
   @override
   _ReportState createState() => _ReportState();
@@ -15,6 +17,19 @@ class _ReportState extends State<Report> {
   File _image;
   Position _currentPosition;
   String _currentAddress; // Naman knows
+
+  PotholeData potholeData = PotholeData();
+
+  Future sendData() async {
+    await getImage();
+
+    try {
+      return await potholeData.updateData(
+          _currentPosition.toString(), DateTime.now(), false);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
   Future getImage() async {
     File image;
@@ -56,7 +71,7 @@ class _ReportState extends State<Report> {
             children: <Widget>[
               IconButton(
                 icon: Icon(Icons.camera_alt, color: Colors.white),
-                onPressed: getImage,
+                onPressed: sendData,
               ),
               Text(
                 'Click a picture',
@@ -69,11 +84,18 @@ class _ReportState extends State<Report> {
                       height: 300.0,
                       width: 300.0,
                     ),
-              _currentPosition == null
-                  ? Container()
-                  : Text(
-                      "LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}"),
-              _currentAddress == null ? Container() : Text(_currentAddress),
+              Text(
+                _currentPosition == null
+                    ? "Location not available"
+                    : "LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}",
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                _currentAddress == null
+                    ? "Address not available"
+                    : _currentAddress,
+                style: TextStyle(color: Colors.white),
+              ),
             ],
           ),
         ),

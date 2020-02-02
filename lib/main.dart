@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 import 'report.dart';
 import 'profile.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'models/killmepls.dart';
 
- 
 final Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // PotholeData potholeData =
+  //     PotholeData(position: "something", time: "something", status: false);
+  // potholeData.updateData();
+
   runApp(MyApp());
 }
 
