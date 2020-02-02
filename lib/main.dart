@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 import 'report.dart';
 import 'profile.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 
+ 
 final Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 
 void main() {
