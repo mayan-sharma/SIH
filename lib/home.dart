@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
               child: Align(
                 alignment: Alignment(-0.85, 1),
                 child: Text(
-                  "Ankur d;Cruz",
+                  "Hoe Hoe Hoe",
                   style: TextStyle(
                     color: Colors.grey[500],
                     fontSize: 40.0,
