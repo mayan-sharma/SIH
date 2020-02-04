@@ -42,7 +42,7 @@ class _ReportState extends State<Report> {
   Future getLocation() async {
     Position position;
     position = await geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.best);
+        desiredAccuracy: LocationAccuracy.bestForNavigation);
     setState(() {
       _currentPosition = position;
     });
