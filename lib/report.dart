@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
-
-import 'models/killmepls.dart';
+import 'services/killmepls.dart';
 
 class Report extends StatefulWidget {
   @override

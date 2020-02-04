@@ -7,12 +7,6 @@ import 'profile.dart';
 final Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // PotholeData potholeData =
-  //     PotholeData(position: "something", time: "something", status: false);
-  // potholeData.updateData();
-
   runApp(MyApp());
 }
 
@@ -32,6 +26,7 @@ class MyAppState extends State<MyApp> {
 
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: children[currentIndex],
         bottomNavigationBar: BottomNavigationBar(
@@ -71,7 +66,6 @@ class MyAppState extends State<MyApp> {
           ],
         ),
       ),
-      debugShowCheckedModeBanner: false,
     );
   }
 
