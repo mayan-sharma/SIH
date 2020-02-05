@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
 import 'services/killmepls.dart';
+import 'ML/ass.dart';
 
 class Report extends StatefulWidget {
   @override
@@ -32,7 +33,7 @@ class _ReportState extends State<Report> {
 
   Future getImage() async {
     File image;
-    image = await ImagePicker.pickImage(source: ImageSource.camera);
+    image = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
       _image = image;
     });
@@ -94,6 +95,9 @@ class _ReportState extends State<Report> {
                     ? "Address not available"
                     : _currentAddress,
                 style: TextStyle(color: Colors.white),
+              ),
+              ModelInference(
+                image: _image,
               ),
             ],
           ),

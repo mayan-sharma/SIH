@@ -1,7 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:tflite/tflite.dart';
 
 class ModelInference extends StatefulWidget {
+  final File image;
+
+  ModelInference({
+    Key key,
+    @required this.image,
+  }) : super(key: key);
+
   @override
   _ModelInferenceState createState() => _ModelInferenceState();
 }
@@ -9,7 +18,11 @@ class ModelInference extends StatefulWidget {
 class _ModelInferenceState extends State<ModelInference> {
   String res;
   List _recognitions;
-  String filepath;
+
+  void initState() {
+    super.initState();
+    loadModel();
+  }
 
   Future loadModel() async {
     res = await Tflite.loadModel(
@@ -17,21 +30,24 @@ class _ModelInferenceState extends State<ModelInference> {
         labels: 'assets/Model/lable_map.txt');
 
     print(res);
+    await detectObject();
   }
 
   Future detectObject() async {
     var recognitions = await Tflite.detectObjectOnImage(
-        path: filepath,
+        path: widget.image.path,
         model: "SSDMobilenet",
         imageMean: 127.5,
         imageStd: 127.5,
-        threshold: 0.4,
+        threshold: 0.2,
         numResultsPerClass: 2,
         asynch: true);
 
     setState(() {
       _recognitions = recognitions;
     });
+
+    print(recognitions);
   }
 
   @override
