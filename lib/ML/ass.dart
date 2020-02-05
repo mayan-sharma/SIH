@@ -19,23 +19,22 @@ class _ModelInferenceState extends State<ModelInference> {
   String res;
   List _recognitions;
 
-  void initState() {
-    super.initState();
-    loadModel();
-  }
-
   Future loadModel() async {
     res = await Tflite.loadModel(
         model: 'assets/Model/model.tflite',
         labels: 'assets/Model/lable_map.txt');
 
+    print('peepoo');
     print(res);
-    await detectObject();
   }
 
   Future detectObject() async {
+    await loadModel();
+
+    // print(widget.image.path);
+
     var recognitions = await Tflite.detectObjectOnImage(
-        path: widget.image.path,
+        path: "/storage/emulated/0/DCIM/Camera/IMG_20200204_232136.jpg",
         model: "SSDMobilenet",
         imageMean: 127.5,
         imageStd: 127.5,
