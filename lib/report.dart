@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
 import 'services/killmepls.dart';
-import 'ML/ass.dart';
 
 class Report extends StatefulWidget {
   @override
@@ -33,10 +32,11 @@ class _ReportState extends State<Report> {
 
   Future getImage() async {
     File image;
-    image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    image = await ImagePicker.pickImage(source: ImageSource.camera);
     setState(() {
       _image = image;
     });
+    print(image.path);
     await getLocation();
   }
 
@@ -96,9 +96,9 @@ class _ReportState extends State<Report> {
                     : _currentAddress,
                 style: TextStyle(color: Colors.white),
               ),
-              ModelInference(
-                image: _image,
-              ),
+              // ModelInference(
+              //   image: _image,
+              // ),
             ],
           ),
         ),

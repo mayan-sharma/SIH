@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
               child: Align(
                 alignment: Alignment(-0.85, 1),
                 child: Text(
-                  "Hoe Hoe Hoe",
+                  "SpotHole",
                   style: TextStyle(
                     color: Colors.grey[500],
                     fontSize: 40.0,
@@ -42,10 +42,11 @@ class PotholesReported extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: 10),
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
         child: Card(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20))),
+            elevation: 5,
             child: Row(children: <Widget>[
               Padding(
                 padding: EdgeInsets.all(20),
@@ -58,6 +59,15 @@ class PotholesReported extends StatelessWidget {
                       ),
                     )),
               ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image(
+                  image: AssetImage('assets/images/graph_Image.png'),
+                  fit: BoxFit.fitWidth,
+                  width: 250,
+                  height: 300,
+                ),
+              )
             ])));
   }
 }
@@ -109,6 +119,7 @@ class Reports extends StatelessWidget {
         child: Card(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10))),
+            elevation: 5,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
