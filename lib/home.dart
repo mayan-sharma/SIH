@@ -23,7 +23,7 @@ class Home extends StatelessWidget {
                 child: Text(
                   "SpotHole",
                   style: TextStyle(
-                    color: Colors.grey[500],
+                    color: Colors.black,
                     fontSize: 40.0,
                   ),
                 ),

@@ -1,16 +1,10 @@
-# test1
+# Spothole
 
-A new Flutter project.
+This app is meant ease the process of finding potholes and repairing them.
+Using this app anyone can report a pothole to the concerned authorities which can then be used to start the repair work.
 
-## Getting Started
+The ML model in the app first detects if the image contains any pothole or not. If it detects any pothole in the image clicked by the user, the current location of the user is sent to the concerned authorities. This way it prevents users from spamming images of random stuff.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### The ML model:
+We used SSD Mobilenet due to its low latency for mobile deivces. 
+We trained the model over a dataset of 600 images that was self annotated.
